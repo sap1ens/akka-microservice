@@ -4,7 +4,7 @@ Example of a microservice with Scala, Akka, Spray and Camel/ActiveMQ. Based on o
 
 Project contains:
 - Easy to test Akka system with a sample actor
-- Spray-based RESTful API
+- Spray-based RESTful API with full CORS support
 - Camel/ActiveMQ extension for a handy integration with Akka system
 - Typesafe config with different profiles for production and testing environments
 - Logback-SLF4J logging
