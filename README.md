@@ -5,10 +5,11 @@ Example of a microservice with Scala, Akka, Spray and Camel/ActiveMQ. Based on o
 Project contains:
 - Easy to test Akka system with a sample actor
 - Spray-based RESTful API with full CORS support
+- Actor and API sample tests
 - Camel/ActiveMQ extension for a handy integration with Akka system
 - Typesafe config with different profiles for production and testing environments
 - Logback-SLF4J logging
-- Sbt assembly plugin for JAR-file creation
+- Sbt assembly plugin for JAR-file creation with custom merge strategy
 
 # API structure
 
@@ -29,6 +30,3 @@ And then run JAR as usual, something like this:
 ```
 nohup java -jar target/scala-2.10/akka-microservice-assembly-1.0.jar 1>/dev/null 2>&1 &
 ```
-
-# TODO
-- Tests
