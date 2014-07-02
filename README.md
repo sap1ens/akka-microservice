@@ -8,7 +8,7 @@ Project contains:
 - Camel/ActiveMQ extension for a handy integration with Akka system
 - Typesafe config with different profiles for production and testing environments
 - Logback-SLF4J logging
-- sbt assembly plugin for JAR-file generation
+- Sbt assembly plugin for JAR-file creation
 
 # API structure
 
