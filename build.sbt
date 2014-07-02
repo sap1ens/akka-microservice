@@ -1,8 +1,13 @@
+import sbtassembly.Plugin._
+import AssemblyKeys._
+
 name := """akka-microservice"""
 
 version := "1.0"
 
 scalaVersion := "2.10.4"
+
+assemblySettings
 
 val akkaVersion = "2.3.3"
 
@@ -23,3 +28,5 @@ libraryDependencies ++= Seq(
 )
 
 lazy val logback = "ch.qos.logback" % "logback-classic" % "1.1.2"
+
+test in assembly := {}
