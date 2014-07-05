@@ -30,3 +30,8 @@ And then run JAR as usual, something like this:
 ```
 nohup java -jar target/scala-2.10/akka-microservice-assembly-1.0.jar 1>/dev/null 2>&1 &
 ```
+
+TODO:
+- Spray-Akka interaction example
+- Spray JSON marshaller example
+- Clean up Spray & Akka naming
