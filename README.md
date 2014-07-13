@@ -14,9 +14,10 @@ Project contains:
 # API structure
 
 ```
-POST /api/example1/test  (Example1Routes)
-GET  /api/example1/done  (Example1Routes)
-GET  /api/example2       (Example2Routes)
+POST /api/example1/test                           (Example1Routes)
+GET  /api/example1/done                           (Example1Routes)
+GET  /api/example1/service/{serviceID}/{command}  (Example1Routes)
+GET  /api/example2                                (Example2Routes)
 ```
 
 # Build & Run
