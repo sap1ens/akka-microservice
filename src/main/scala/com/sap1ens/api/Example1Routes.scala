@@ -19,14 +19,14 @@ class Example1Routes(implicit ec: ExecutionContext, log: LoggingContext) extends
   import Example1RoutesProtocol._
 
   val route: Route =
-    path("test" / "endpoint1") {
+    path("example1" / "test") {
       post {
         entity(as[TestAPIObject]) { request =>
           complete(StatusCodes.OK, s"you send me ${request.thing}")
         }
       }
     } ~
-    path("another" / "stuff") {
+    path("example1" / "done") {
       get {
         complete("Done!")
       }

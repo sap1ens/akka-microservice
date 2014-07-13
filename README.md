@@ -14,9 +14,9 @@ Project contains:
 # API structure
 
 ```
-POST /api/test/endpoint1 (Example1Routes)
-GET  /api/another/stuff  (Example1Routes)
-GET  /api/endpoint2      (Example2Routes)
+POST /api/example1/test  (Example1Routes)
+GET  /api/example1/done  (Example1Routes)
+GET  /api/example2       (Example2Routes)
 ```
 
 # Build & Run
@@ -34,4 +34,4 @@ nohup java -jar target/scala-2.10/akka-microservice-assembly-1.0.jar 1>/dev/null
 TODO:
 - Spray-Akka interaction example
 - Spray JSON marshaller example
-- Clean up Spray & Akka naming
+- Kamon.io integration

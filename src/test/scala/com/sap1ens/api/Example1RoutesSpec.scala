@@ -10,15 +10,15 @@ class Example1RoutesSpec extends BaseSpec with ScalatestRouteTest with Api with 
 
   behavior of "Example1 API"
 
-  it should "complete 'test/endpoint1' endpoint" in {
-    Post("/api/test/endpoint1", HttpEntity(`application/json`, """{ "thing": "ping" }""")) ~> routes ~> check {
+  it should "complete 'example1/test' endpoint" in {
+    Post("/api/example1/test", HttpEntity(`application/json`, """{ "thing": "ping" }""")) ~> routes ~> check {
       status should be (StatusCodes.OK)
       body.asString should be ("you send me ping")
     }
   }
 
-  it should "complete 'another/stuff' endpoint" in {
-    Get("/api/another/stuff") ~> routes ~> check {
+  it should "complete 'example1/done' endpoint" in {
+    Get("/api/example1/done") ~> routes ~> check {
       status should be (StatusCodes.OK)
       body.asString should be ("Done!")
     }
