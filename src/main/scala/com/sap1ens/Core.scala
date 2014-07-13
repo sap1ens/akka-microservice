@@ -19,6 +19,10 @@ trait CoreActors extends ConfigHolder {
   this: Core =>
 
   val exampleService = system.actorOf(ExampleService.props("test property"), "ExampleService")
+
+  val services: Services = Map(
+    "example" -> exampleService
+  )
 }
 
 trait ActiveMQSupport extends ConfigHolder {

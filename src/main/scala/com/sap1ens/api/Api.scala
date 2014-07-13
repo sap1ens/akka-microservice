@@ -1,14 +1,15 @@
 package com.sap1ens.api
 
 import spray.routing._
-import akka.actor.{ActorLogging, Props}
+import akka.actor.{ActorRef, ActorLogging, Props}
 import akka.io.IO
+import scala.concurrent.ExecutionContext.Implicits.global
 import spray.can.Http
 import spray.json.DefaultJsonProtocol
 import spray.util.LoggingContext
 import spray.httpx.SprayJsonSupport
 import com.sap1ens.utils.ConfigHolder
-import com.sap1ens.{Core, CoreActors}
+import com.sap1ens.{Services, Core, CoreActors}
 import spray.http.HttpHeaders.{`Access-Control-Allow-Origin`, `Access-Control-Allow-Credentials`, `Access-Control-Allow-Headers`, `Access-Control-Allow-Methods`}
 import spray.http.HttpMethods._
 import spray.http.{StatusCodes, HttpOrigin, SomeOrigins}
@@ -32,12 +33,10 @@ trait CORSSupport extends Directives {
 trait Api extends Directives with RouteConcatenation with CORSSupport with ConfigHolder {
   this: CoreActors with Core =>
 
-  private implicit val _ = system.dispatcher
-
   val routes =
     respondWithCORS(config.getString("origin.domain")) {
       pathPrefix("api") {
-        new Example1Routes().route ~
+        new Example1Routes(services).route ~
         new Example2Routes().route
       }
     }
@@ -64,9 +63,23 @@ object ApiRoute {
 
   object ApiMessages {
     val UnknownException = "Unknown exception"
+    val UnsupportedService = "Sorry, provided service is not supported."
   }
 }
 
-abstract class ApiRoute(implicit log: LoggingContext) extends Directives with SprayJsonSupport {
+abstract class ApiRoute(services: Services = Services.empty)(implicit log: LoggingContext) extends Directives with SprayJsonSupport {
 
+  import com.sap1ens.api.ApiRoute.{ApiMessages, Message}
+  import com.sap1ens.api.ApiRoute.ApiRouteProtocol._
+
+  def withService(id: String)(action: ActorRef => Route) = {
+    services.get(id.toLowerCase) match {
+      case Some(provider) =>
+        action(provider)
+
+      case None =>
+        log.error(s"Unsupported service: $id")
+        complete(StatusCodes.BadRequest, Message(ApiMessages.UnsupportedService))
+    }
+  }
 }
