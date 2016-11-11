@@ -12,7 +12,7 @@ trait Core {
 trait BootedCore extends Core {
   implicit lazy val system = ActorSystem("microservice-system")
 
-  sys.addShutdownHook(system.shutdown())
+  sys.addShutdownHook(system.terminate())
 }
 
 trait CoreActors extends ConfigHolder {
